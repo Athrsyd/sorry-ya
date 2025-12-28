@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from "react";
 
 const LoadingScreen = ({ isExiting }) => {
@@ -63,20 +62,12 @@ const LoadingScreen = ({ isExiting }) => {
     audioRef.current.load();
   }, []);
 
-  // Setelah loading selesai, izinkan musik diputar saat interaksi user
+  // Setelah loading selesai, langsung play musik
   useEffect(() => {
-    if (hidden) {
-      setCanPlayMusic(true);
+    if (hidden && audioRef.current) {
+      audioRef.current.play();
     }
   }, [hidden]);
-
-  // Handler untuk play musik saat interaksi user setelah loading
-  const handleUserInteraction = () => {
-    if (canPlayMusic && audioRef.current) {
-      audioRef.current.play();
-      setCanPlayMusic(false); // hanya sekali
-    }
-  };
 
   if (hidden) {
     // Render div tak terlihat untuk menangkap klik/tap pertama setelah loading
