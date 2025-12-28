@@ -121,7 +121,7 @@ const LoadingScreen = ({ isExiting }) => {
       
       {/* Bottom instruction - hide when button shows */}
       {!showButton && (
-        <h1 className="absolute left-1/2 top-110 -translate-x-1/2 m-0 text-lg md:text-xl text-text-primary/70 font-medium z-10 px-4 text-center">
+        <h1 className="absolute left-1/2 top-125 -translate-x-1/2 m-0 text-lg md:text-xl text-text-primary/70 font-medium z-10 px-4 text-center">
           tahan buat jeda
         </h1>
       )}
