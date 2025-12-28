@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from "react";
 
 const LoadingScreen = ({ isExiting }) => {
@@ -13,6 +14,8 @@ const LoadingScreen = ({ isExiting }) => {
   const [hidden, setHidden] = useState(false);
   const pauseRef = useRef(false);
   const timerRef = useRef();
+  const audioRef = useRef(null);
+  const [canPlayMusic, setCanPlayMusic] = useState(false);
 
   // Total duration: 15 seconds
   // Number of texts: texts.length
@@ -53,16 +56,40 @@ const LoadingScreen = ({ isExiting }) => {
     pauseRef.current = false;
   };
 
-  // Play music when intro is done (hidden becomes true)
+
+  // Load audio once
+  useEffect(() => {
+    audioRef.current = new window.Audio('/Sound (2).mp3');
+    audioRef.current.load();
+  }, []);
+
+  // Setelah loading selesai, izinkan musik diputar saat interaksi user
   useEffect(() => {
     if (hidden) {
-      const audio = new Audio('/Sound.m4a');
-      audio.play();
+      setCanPlayMusic(true);
     }
   }, [hidden]);
 
-  if (hidden) return null;
-  
+  // Handler untuk play musik saat interaksi user setelah loading
+  const handleUserInteraction = () => {
+    if (canPlayMusic && audioRef.current) {
+      audioRef.current.play();
+      setCanPlayMusic(false); // hanya sekali
+    }
+  };
+
+  if (hidden) {
+    // Render div tak terlihat untuk menangkap klik/tap pertama setelah loading
+    return (
+      <div
+        className="fixed inset-0 z-50"
+        style={{ width: '100vw', height: '100vh', background: 'transparent' }}
+        onClick={handleUserInteraction}
+        onTouchEnd={handleUserInteraction}
+      />
+    );
+  }
+
   return (
     <div
       onMouseDown={handlePause}
