@@ -74,14 +74,10 @@ const LoadingScreen = ({ isExiting }) => {
           isExiting ? 'opacity-0 -translate-y-12' : 'opacity-100 translate-y-0'
         }`}
       >
-        {/* Decorative elements */}
-        <div className="absolute top-20 left-10 w-20 h-20 bg-accent/30 rounded-full blur-xl animate-pulse"></div>
-        <div className="absolute bottom-32 right-16 w-32 h-32 bg-primary/40 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-1/3 right-20 w-16 h-16 bg-secondary/50 rounded-full blur-lg animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-        
+
         {/* Main text */}
         <span 
-          className={`text-3xl md:text-5xl font-bold text-text-primary text-center px-8 transition-opacity duration-400 z-10 ${
+          className={`text-xl font-bold text-text-primary text-center px-8 transition-opacity duration-400 z-10 ${
             textFade ? 'opacity-0' : 'opacity-100'
           }`}
         >
@@ -89,19 +85,11 @@ const LoadingScreen = ({ isExiting }) => {
         </span>
         
         {/* Loading dots */}
-        <div className="flex gap-2 mt-8 z-10">
-          {[0, 1, 2].map((i) => (
-            <div
-              key={i}
-              className="w-3 h-3 bg-text-primary rounded-full animate-bounce"
-              style={{ animationDelay: `${i * 0.15}s` }}
-            ></div>
-          ))}
-        </div>
+
       </div>
       
       {/* Bottom instruction */}
-      <h1 className="absolute left-1/2 bottom-8 -translate-x-1/2 m-0 text-lg md:text-xl text-text-primary/70 font-medium z-10 px-4 text-center">
+      <h1 className="absolute left-1/2 top-110 -translate-x-1/2 m-0 text-lg md:text-xl text-text-primary/70 font-medium z-10 px-4 text-center">
         tahan buat jeda
       </h1>
       
