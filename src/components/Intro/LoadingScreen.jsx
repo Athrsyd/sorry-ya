@@ -59,7 +59,7 @@ const LoadingScreen = ({ isExiting }) => {
 
   // Load audio once
   useEffect(() => {
-    audioRef.current = new window.Audio('/Sound (2).mp3');
+    audioRef.current = new window.Audio('/Sound.mp3');
     audioRef.current.load();
   }, []);
 
