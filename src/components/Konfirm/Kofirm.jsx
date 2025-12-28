@@ -11,8 +11,8 @@ const Kofirm = () => {
       setJumlahKlik(jumlahKlik + 1);
       setPindah(() => {
         const posisiBaru = {};
-        posisiBaru.top = Math.floor(Math.random() * 100) + 10 + "%";
-        posisiBaru.right = Math.floor(Math.random() * 100) + 10 + "%";
+        posisiBaru.top = Math.floor(Math.random() * 50) + "%";
+        posisiBaru.right = Math.floor(Math.random() * 50) + "%";
         return posisiBaru;
       });
 
