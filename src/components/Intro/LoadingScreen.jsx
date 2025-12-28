@@ -13,8 +13,6 @@ const LoadingScreen = ({ isExiting }) => {
   const [hidden, setHidden] = useState(false);
   const pauseRef = useRef(false);
   const timerRef = useRef();
-  const audioRef = useRef(null);
-  const [canPlayMusic, setCanPlayMusic] = useState(false);
 
   // Total duration: 15 seconds
   // Number of texts: texts.length
@@ -26,9 +24,15 @@ const LoadingScreen = ({ isExiting }) => {
   useEffect(() => {
     if (hidden) return;
     if (currentIdx >= texts.length - 1) {
-      // After last text, wait, then hide
+      // After last text, wait, then hide and play music
       timerRef.current = setTimeout(() => {
         setHidden(true);
+        // Play music when loading screen is complete
+        let suara = new Audio('/Sound.mp3');
+        suara.loop = true;
+        suara.play().catch(error => {
+          console.log("Autoplay was prevented:", error);
+        });
       }, perTextDuration);
       return () => clearTimeout(timerRef.current);
     }
@@ -55,32 +59,8 @@ const LoadingScreen = ({ isExiting }) => {
     pauseRef.current = false;
   };
 
-
-  // Load audio once
-  useEffect(() => {
-    audioRef.current = new window.Audio('/Sound.mp3');
-    audioRef.current.load();
-  }, []);
-
-  // Setelah loading selesai, langsung play musik
-  useEffect(() => {
-    if (hidden && audioRef.current) {
-      audioRef.current.play();
-    }
-  }, [hidden]);
-
-  if (hidden) {
-    // Render div tak terlihat untuk menangkap klik/tap pertama setelah loading
-    return (
-      <div
-        className="fixed inset-0 z-50"
-        style={{ width: '100vw', height: '100vh', background: 'transparent' }}
-        onClick={handleUserInteraction}
-        onTouchEnd={handleUserInteraction}
-      />
-    );
-  }
-
+  if (hidden) return null;
+  
   return (
     <div
       onMouseDown={handlePause}
@@ -101,7 +81,7 @@ const LoadingScreen = ({ isExiting }) => {
         
         {/* Main text */}
         <span 
-          className={`text-xl font-bold text-text-primary text-center px-8 transition-opacity duration-400 z-10 ${
+          className={`text-3xl md:text-5xl font-bold text-text-primary text-center px-8 transition-opacity duration-400 z-10 ${
             textFade ? 'opacity-0' : 'opacity-100'
           }`}
         >
@@ -109,7 +89,7 @@ const LoadingScreen = ({ isExiting }) => {
         </span>
         
         {/* Loading dots */}
-        {/* <div className="flex gap-2 mt-8 z-10">
+        <div className="flex gap-2 mt-8 z-10">
           {[0, 1, 2].map((i) => (
             <div
               key={i}
@@ -117,12 +97,12 @@ const LoadingScreen = ({ isExiting }) => {
               style={{ animationDelay: `${i * 0.15}s` }}
             ></div>
           ))}
-        </div> */}
+        </div>
       </div>
       
       {/* Bottom instruction */}
       <h1 className="absolute left-1/2 bottom-8 -translate-x-1/2 m-0 text-lg md:text-xl text-text-primary/70 font-medium z-10 px-4 text-center">
-        Tahan buat jeda
+        tahan buat jeda
       </h1>
       
       {/* Optional: Progress indicator */}
