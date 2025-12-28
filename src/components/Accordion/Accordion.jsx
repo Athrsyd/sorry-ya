@@ -34,9 +34,10 @@ const Accordion = () => {
       ></div>
 
       <div className="w-full max-w-2xl mx-auto z-10">
-        <h2 className="text-xl md:text-3xl font-extrabold text-text-primary mb-12 text-center drop-shadow-sm tracking-tight leading-relaxed">
+        <h2 className="text-xl md:text-3xl font-extrabold text-text-primary text-center drop-shadow-sm tracking-tight leading-relaxed">
           Ini beberapa poin yang mau gua tambahin, Mir...
         </h2>
+        <p className="text-xl md:text-3xl font-extrabold text-text-primary mb-12 text-center">( Click tanda plus )</p>
         {isiAccordion.map((item) => (
           <>
             <div
