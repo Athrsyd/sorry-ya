@@ -11,7 +11,7 @@ const Kofirm = () => {
       setJumlahKlik(jumlahKlik + 1);
       setPindah(() => {
         const posisiBaru = {};
-        posisiBaru.top = Math.floor(Math.random() * 250) + "%";
+        posisiBaru.top = Math.floor(Math.random() * 300) + "%";
         posisiBaru.right = Math.floor(Math.random() * 50) + "%";
         return posisiBaru;
       });
@@ -79,7 +79,7 @@ const Kofirm = () => {
               Gua hargai keputusan lu.
             </h1>
             <p className="text-lg md:text-xl text-text-primary/80 font-medium">
-              Tapi gua harap lu, lu bisa maafin gua😓😓😓
+              Tapi gua harap, lu bisa maafin gua😓😓😓
               <br />
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">

@@ -16,8 +16,8 @@ const LoadingScreen = ({ isExiting }) => {
   const timerRef = useRef();
 
   // Total duration: 15 seconds
-  const totalDuration = 15000;
-  const fadeDuration = 600;
+  const totalDuration = 17500;
+  const fadeDuration = 500;
   const perTextDuration = totalDuration / texts.length;
 
   useEffect(() => {
